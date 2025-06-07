@@ -25,9 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased main-bg`}
       >
         {children}
+        {/* <script src="./assets/vendor/canvas-confetti/dist/confetti.browser.js"></script> */}
       </body>
     </html>
   );
