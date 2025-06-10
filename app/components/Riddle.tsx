@@ -1,9 +1,11 @@
 // Riddle.tsx
 "use client";
 
-import { Button } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { NameRiddleInput } from "./NameRiddleInput";
+import { honk } from "../page";
+import InstagramEmbed from "./Embed";
 
 const ALL_SOLUTIONS: string[] = [
   "Michelangelo",
@@ -20,6 +22,7 @@ export const Riddle = () => {
     Array(ALL_SOLUTIONS.length).fill("")
   );
   const [allRiddlesSolved, setAllRiddlesSolved] = useState(false);
+  const [bdayPopupOpen, setBdayPopupOpen] = useState<boolean>(false);
 
   // Function to check if all riddles are solved
   const checkCompletion = useCallback((guessesToCheck: string[]) => {
@@ -40,10 +43,10 @@ export const Riddle = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedProgress = localStorage.getItem("riddle_progress");
-      console.log(
-        "On initial load, raw savedProgress from localStorage:",
-        savedProgress
-      ); // Debugging
+      // console.log(
+      //   "On initial load, raw savedProgress from localStorage:",
+      //   savedProgress
+      // ); // Debugging
 
       const initialGuesses = Array(ALL_SOLUTIONS.length).fill("");
       if (savedProgress) {
@@ -72,10 +75,10 @@ export const Riddle = () => {
   // It handles both saving to localStorage AND re-checking completion
   useEffect(() => {
     if (typeof window !== "undefined") {
-      console.log(
-        "currentGuesses updated, saving to localStorage:",
-        currentGuesses
-      ); // Debugging
+      // console.log(
+      //   "currentGuesses updated, saving to localStorage:",
+      //   currentGuesses
+      // ); // Debugging
       localStorage.setItem("riddle_progress", JSON.stringify(currentGuesses));
     }
     checkCompletion(currentGuesses);
@@ -92,15 +95,16 @@ export const Riddle = () => {
   }, []);
 
   // For debugging allRiddlesSolved status changes
-  useEffect(() => {
-    console.log("allRiddlesSolved state:", allRiddlesSolved);
-  }, [allRiddlesSolved]);
+  // useEffect(() => {
+  //   console.log("allRiddlesSolved state:", allRiddlesSolved);
+  // }, [allRiddlesSolved]);
 
   const getBdaySurprise = () => {
     // Only reachable if allRiddlesSolved is true
-    alert(
-      "Congratulations! You've solved all the riddles! Here's your grand reward!"
-    );
+    // alert(
+    //   "Congratulations! You've solved all the riddles! Here's your grand reward!"
+    // );
+    setBdayPopupOpen(true);
   };
 
   const resetGame = () => {
@@ -113,11 +117,38 @@ export const Riddle = () => {
     console.log("Game reset!");
   };
 
-  console.log(currentGuesses);
-
   return (
     <>
-      <div className="flex flex-col gap-5 justify-center mt-10 mx-auto">
+      <Modal
+        open={bdayPopupOpen}
+        onClose={() => setBdayPopupOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="p-4 mx-4 bg-white mt-8 flex flex-col items-center justify-center">
+          <h1 className={`${honk.className} text-4xl text-center my-2`}>
+            Happy Birthday Schnuggi!
+          </h1>
+          <InstagramEmbed permalink="https://www.instagram.com/reel/DKq1Dr2Ju_p/?utm_source=ig_embed&amp;utm_campaign=loading" />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setBdayPopupOpen(false)}
+            sx={{
+              bgcolor: "#c6ffdd",
+              boxShadow: 1,
+              borderRadius: 2,
+              fontSize: 12,
+              fontStyle: "bold",
+              color: "black",
+            }}
+            className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+          >
+            Close
+          </Button>
+        </div>
+      </Modal>
+      <div className="flex flex-col gap-5 justify-center mt-8 mx-auto">
         {ALL_SOLUTIONS.map((solution, index) => (
           <NameRiddleInput
             key={index}
@@ -128,7 +159,7 @@ export const Riddle = () => {
           />
         ))}
       </div>
-      <div className="my-10 mx-auto w-fit">
+      <div className="my-8 mx-auto w-fit flex flex-col justify-center gap-4">
         {allRiddlesSolved && (
           <Button
             variant="contained"
@@ -138,11 +169,10 @@ export const Riddle = () => {
               bgcolor: "#c6ffdd",
               boxShadow: 1,
               borderRadius: 2,
-              fontSize: 20,
+              fontSize: 14,
               fontStyle: "bold",
               color: "black",
             }}
-            id="hs-run-on-click-run-confetti"
             className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
           >
             Get Your Bday Surprise
@@ -156,10 +186,9 @@ export const Riddle = () => {
             bgcolor: "#ffcdd2", // Light red for reset
             boxShadow: 1,
             borderRadius: 2,
-            fontSize: 20,
+            fontSize: 14,
             fontStyle: "bold",
             color: "black",
-            ml: 2, // Margin left
           }}
         >
           Reset Game

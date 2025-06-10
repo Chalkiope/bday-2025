@@ -45,7 +45,7 @@ export const NameRiddleInput = ({
     onParentChange(id, newValue); // Notify parent component
   };
 
-  console.log(initialValue, localValue);
+  // console.log(initialValue, localValue);
 
   return (
     <div className="flex flex-col align-middle justify-center">
