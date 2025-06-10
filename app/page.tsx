@@ -2,7 +2,7 @@ import { Riddle } from "./components/Riddle";
 import { Honk } from "next/font/google";
 
 // Configure the font
-export const honk = Honk({
+const honk = Honk({
   subsets: ["latin"], // Essential for performance
   weight: ["400"], // Specify weights you actually use
   variable: "--font-honk", // Optional, useful for Tailwind CSS

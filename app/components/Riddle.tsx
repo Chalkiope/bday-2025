@@ -4,8 +4,17 @@
 import { Button, Modal } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { NameRiddleInput } from "./NameRiddleInput";
-import { honk } from "../page";
 import InstagramEmbed from "./Embed";
+
+import { Honk } from "next/font/google";
+
+// Configure the font
+const honk = Honk({
+  subsets: ["latin"], // Essential for performance
+  weight: ["400"], // Specify weights you actually use
+  variable: "--font-honk", // Optional, useful for Tailwind CSS
+  display: "swap", // Recommended for optimal loading (prevents invisible text)
+});
 
 const ALL_SOLUTIONS: string[] = [
   "Michelangelo",
