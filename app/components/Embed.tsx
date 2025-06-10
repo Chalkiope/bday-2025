@@ -45,9 +45,9 @@ const InstagramEmbed: React.FC<InstagramEmbedProps> = ({ permalink }) => {
     // 4. Trigger Instagram's embed script to process the new content
     // This function is exposed globally by the Instagram embed.js script.
     // We check if it exists before calling it.
-    //@ts-expect-error
+    //@ts-expect-error  ignore type error
     if (window.instgrm) {
-      //@ts-expect-error
+      //@ts-expect-error  ignore type error
       window.instgrm.Embeds.process();
     }
   }, [permalink]); // Re-run effect if permalink changes
@@ -66,9 +66,9 @@ const InstagramEmbed: React.FC<InstagramEmbedProps> = ({ permalink }) => {
         async
         onLoad={() => {
           // This ensures process() runs even if the script loads AFTER the component mounts
-          //@ts-expect-error
+          //@ts-expect-error ignore type error
           if (window.instgrm) {
-            //@ts-expect-error
+            //@ts-expect-error  ignore type error
             window.instgrm.Embeds.process();
           }
         }}
