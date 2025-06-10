@@ -51,3 +51,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.honk-text-fix {
+  /* Base color you want the text to be if the color font fails */
+  color: black; /* or a default color that works with Honk's design */
+
+  /* WebKit specific properties to force fill and remove unwanted stroke */
+  -webkit-text-fill-color: currentColor;
+  -webkit-text-stroke-width: 0;
+  text-shadow: none;
+}
