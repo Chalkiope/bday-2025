@@ -6,16 +6,16 @@ import { useCallback, useEffect, useState } from "react";
 import { NameRiddleInput } from "./NameRiddleInput";
 import InstagramEmbed from "./Embed";
 
-import { Honk } from "next/font/google";
+// import { Honk } from "next/font/google";
 import Image from "next/image";
 
 // Configure the font
-const honk = Honk({
-  subsets: ["latin"], // Essential for performance
-  weight: ["400"], // Specify weights you actually use
-  variable: "--font-honk", // Optional, useful for Tailwind CSS
-  display: "swap", // Recommended for optimal loading (prevents invisible text)
-});
+// const honk = Honk({
+//   subsets: ["latin"], // Essential for performance
+//   weight: ["400"], // Specify weights you actually use
+//   variable: "--font-honk", // Optional, useful for Tailwind CSS
+//   display: "swap", // Recommended for optimal loading (prevents invisible text)
+// });
 
 const ALL_SOLUTIONS: string[] = [
   "Michelangelo",
