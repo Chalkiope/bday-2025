@@ -60,4 +60,9 @@ body {
   -webkit-text-fill-color: currentColor;
   -webkit-text-stroke-width: 0;
   text-shadow: none;
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "MORF" 15, "SHLN" 50;
 }
