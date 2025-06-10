@@ -7,6 +7,7 @@ import { NameRiddleInput } from "./NameRiddleInput";
 import InstagramEmbed from "./Embed";
 
 import { Honk } from "next/font/google";
+import Image from "next/image";
 
 // Configure the font
 const honk = Honk({
@@ -134,10 +135,16 @@ export const Riddle = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className="p-4 mx-4 bg-white mt-8 flex flex-col items-center justify-center">
-          <h1 className={`${honk.className} text-4xl text-center my-2`}>
-            Happy Birthday Schnuggi!
-          </h1>
+        <div className="p-4 mx-4 bg-white mt-8 flex flex-col items-center h-[80%] overflow-scroll">
+          <div className="size-11/12 mx-auto my-5">
+            <Image
+              src="/happy-bday.svg"
+              alt="Schnuggis Birthday Riddle"
+              width={750} // Replace with the actual width of your SVG
+              height={90} // Replace with the actual height of your SVG
+              priority // If it's a critical hero image, use priority
+            />
+          </div>
           <InstagramEmbed permalink="https://www.instagram.com/reel/DKq1Dr2Ju_p/?utm_source=ig_embed&amp;utm_campaign=loading" />
           <Button
             variant="contained"
